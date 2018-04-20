@@ -7,9 +7,9 @@ require_relative('../room')
 class TestRoom < MiniTest::Test
 
   def setup
-    @song1 = Song.new("Laaa")
+    @song1 = Song.new("Leee")
     @guest1 = Guest.new("Mike",100)
-    @room_a = Room.new("Alpha")
+    @room_a = Room.new
   end
 
   def test_guest_name
@@ -47,7 +47,7 @@ class TestRoom < MiniTest::Test
 
   def test_add_song_to_a_room
     @room_a.add_song(@song1.name)
-    result = ["Laaa"]
+    result = ["Laaa", "Looo", "Luuu", "Leee"]
     answer = @room_a.songs_list
     assert_equal(result,answer)
   end
@@ -69,6 +69,37 @@ class TestRoom < MiniTest::Test
    def test_room_price
      result = 20
      answer = @room_a.price
+     assert_equal(result,answer)
+   end
+
+   def test_when_guest_find_fav_song__turedef
+     if @room_a.guest_find_fav_song(@guest1.fav_song) == true
+       @guest1.cheer_loudly
+     else
+       return
+       false
+     end
+     result = "Whoo!"
+     answer = @guest1.cheer_loudly
+     assert_equal(result,answer)
+   end
+
+   def test_total_spend
+     result = 0
+     answer = @room_a.total_spend
+     assert_equal(result,answer)
+   end
+
+   def test_time_to_pay
+     result = 0
+     answer = @room_a.hour_in_use
+     assert_equal(result,answer)
+   end
+
+   def test_hour_in_use_3_hours
+     @room_a.calculate_hour_in_use(3)
+     result = 60
+     answer = @room_a.total_spend
      assert_equal(result,answer)
    end
 end

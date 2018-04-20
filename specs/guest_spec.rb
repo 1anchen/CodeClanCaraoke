@@ -7,7 +7,7 @@ class TestGuest < MiniTest::Test
 
   def setup
     @guest1 = Guest.new("Mike",100)
-    @room_a = Room.new("Alpha")
+    @room_a = Room.new
   end
 
   def test_guest_name
@@ -30,4 +30,15 @@ class TestGuest < MiniTest::Test
   end
 
 
+  def test_fav_song
+    result = "Laaa"
+    answer = @guest1.fav_song
+    assert_equal(result,answer)
+  end
+
+  def test_cheer_loudly
+    result = "Whoo!"
+    answer = @guest1.cheer_loudly
+    assert_equal(result,answer)
+  end
 end
